@@ -1,0 +1,4 @@
+2024-10-29 10:11:15,862 [main] INFO  [o.a.k.c.telemetry.internals.KafkaMetricsCollector] KafkaMetricsCollector.java:269 - initializing Kafka metrics collector
+2024-10-29 10:11:16,044 [main] INFO  [org.apache.kafka.common.utils.AppInfoParser] AppInfoParser.java:124 - Kafka version: 3.8.0
+2024-10-29 10:11:16,046 [main] INFO  [org.apache.kafka.common.utils.AppInfoParser] AppInfoParser.java:125 - Kafka commitId: 771b9576b00ecf5b
+2024-10-29 10:11:16,046 [main] INFO  [org.apache.kafka.common.utils.AppInfoParser] AppInfoParser.java:126 - Kafka startTimeMs: 1730167876042
