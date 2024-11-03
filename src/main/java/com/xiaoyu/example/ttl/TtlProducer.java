@@ -7,12 +7,11 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.internals.RecordHeader;
 import org.apache.kafka.common.header.internals.RecordHeaders;
 
-import static com.xiaoyu.example.ttl.TtlConstant.topic;
-import static com.xiaoyu.example.ttl.TtlConstant.url;
+import static com.xiaoyu.Constant.BROKER_URL;
 
 public class TtlProducer {
 
-    static KafkaProducer<String, String> producer = ProducerFactory.getStringProducer(url);
+    static KafkaProducer<String, String> producer = ProducerFactory.getStringProducer(BROKER_URL);
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -27,10 +26,17 @@ public class TtlProducer {
     public static void send(long aheadTime, int timeout) {
         producer.send(
                 new ProducerRecord<>(
-                        topic, 0, System.currentTimeMillis(),
-                        "cur-time",
-                        String.format("id: %d, time : %d.", 1, (System.currentTimeMillis() - aheadTime)),
-                        new RecordHeaders().add(new RecordHeader("ttl", ByteUtils.longToBytes(timeout)))
+                        TtlConstant.TTL_TOPIC,
+                        0,
+                        System.currentTimeMillis() - aheadTime,
+                        null,
+                        "msg_ttl",
+                        new RecordHeaders().add(
+                                new RecordHeader(
+                                        "ttl",
+                                        ByteUtils.longToBytes(timeout)
+                                )
+                        )
                 ),
                 (metadata, exception) -> {}
         );
